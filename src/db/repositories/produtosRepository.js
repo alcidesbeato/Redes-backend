@@ -14,14 +14,14 @@ class ProductsRepository{
         //coloca dentro do exclude os campos que vc nao quer que apareça
     }
 
-    async create(currentUsuario){
-        return await products.create(currentUsuario);
+    async create(currentProduto){
+        return await products.create(currentProduto);
     }
 
-    async update(usuarioName, currentUsuario){
-        return await products.update(currentUsuario,{
+    async update(produtoName, currentProduto){
+        return await products.update(currentProduto,{
             where: {
-                name: usuarioName
+                name: produtoName
             }
         });
     }

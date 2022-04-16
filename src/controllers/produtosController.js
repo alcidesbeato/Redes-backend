@@ -1,0 +1,72 @@
+const { Router } = require('express');
+const ProductsService = require('../services/produtoService');
+const {produtos} = require('../db/models')
+
+
+const routes = Router();
+
+const productsService = new ProductsService();
+
+routes.get('/', async (_req, res) => {
+    const products = await productsService.list();
+
+    return res
+    .status(200)
+    .json(products);
+})
+
+routes.post('/', async  (req, res) => {
+    const {body} = req;
+    const  products = await productsService.create(body);
+
+    return res.status(201).json(products);
+})
+
+routes.put('/:name', async (req, res) => {
+    const {body,params} = req;
+    const {name} = params;
+
+    try{
+        await productsService.updateByName(name, body);
+    }catch(error){
+        return res.status(400).json({
+            errorMessage: error.message
+        })
+    }
+
+    return res.status(200).json({
+        ok: true
+    })
+})
+
+routes.delete('/:id', async (req, res) => {
+    const {params} = req;
+    const {id} = params;
+
+    try{
+        await productsService.deleteById(id);
+    }catch(error){
+        return res.status(400).json({
+            errorMessage: error.message
+        })
+    }
+
+    return res.status(200).json({
+        ok: true
+    })
+})
+
+routes.get('/check/:name', async (req, res) => {
+    const {params} = req;
+    const {name} = params;
+
+
+    const products = await products.findOne({ where: { name } });
+
+    if(user === null){
+        return null
+    }else return 'ok'
+    
+})
+
+module.exports = routes;
