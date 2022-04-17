@@ -2,8 +2,8 @@ const { Router } = require('express');
 const app = require('../server');
 
 const produtosController =  require('./produtosController');
-const localController =  require('./localController');
-const estoqueController =  require('./estoqueController');
+const localController =  require('./localControllers');
+const estoqueController =  require('./estoqueControllers');
 
 
 const routes = Router();

@@ -1,9 +1,9 @@
-const {produtos} = require('../models')
+const {rel_est_local_prod} = require('../models')
 
-class ProdutosRepository{
+class Rel_est_local_prodRepository{
     async list(){
         try {
-            return await produtos.findAll({
+            return await rel_est_local_prod.findAll({
                 attributes: {
                     exclude: [],
                 }
@@ -15,28 +15,28 @@ class ProdutosRepository{
     }
 
     async create(currentProduto){
-        return await produtos.create(currentProduto);
+        return await rel_est_local_prod.create(currentProduto);
     }
 
     async update(produtoName, currentProduto){
-        return await produtos.update(currentProduto,{
+        return await rel_est_local_prod.update(currentProduto,{
             where: {
-                name: produtoName
+                name: rel_est_local_prod_Name
             }
         });
     }
 
     async getByName(productName){
-        return await produtos.findOne({ where: { name: productName } });
+        return await rel_est_local_prod.findOne({ where: { name: productName } });
     }
 
     async deleteById(produtoId){
-        return await produtos.destroy({
+        return await rel_est_local_prod.destroy({
             where: {
-                id: produtoId
+                id: rel_est_local_prod_Id
             }
         })
     }
 }
 
-module.exports = ProdutosRepository;
+module.exports = Rel_est_local_prodRepository;
