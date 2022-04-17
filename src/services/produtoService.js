@@ -1,32 +1,32 @@
-const ProductsRepository = require("../db/repositories/produtosRepository");
+const ProdutosRepository = require("../db/repositories/produtosRepository");
 
-class productsService{
-   productsRepository = new ProductsRepository();
+class produtosService{
+   produtosRepository = new ProdutosRepository();
     async list(name){
-        return await this.productsRepository.list(name);
+        return await this.produtosRepository.list(name);
     }
 
-    async create(product){
-        return await this.productsRepository.create(product);
+    async create(produto){
+        return await this.produtosRepository.create(produto);
     }
 
-    async updateByName(productName, product){
-        const productsExiste = await this.productsRepository.getByName(productName);
-        if(!productsExiste){
-            throw new Error('nao existe um product com esse nome');
+    async updateByName(produtoName, produto){
+        const produtosExiste = await this.produtosRepository.getByName(produtoName);
+        if(!produtosExiste){
+            throw new Error('nao existe um produto com esse nome');
         }
-        await this.productsRepository.update(productName,product);
+        await this.produtosRepository.update(produtoName,produto);
 
-        return await this.productsRepository.getByName(productName);
+        return await this.produtosRepository.getByName(produtoName);
     }
 
-    async deleteById(productId){
-        const productsExiste = await this.productsRepository.getById(productId);
-        if(!productsExiste){
-            throw new Error('nao existe um product com esse id');
+    async deleteById(produtoId){
+        const produtosExiste = await this.produtosRepository.getById(produtoId);
+        if(!produtosExiste){
+            throw new Error('nao existe um produto com esse id');
         }
-        await this.productsRepository.deleteById(productId);
+        await this.produtosRepository.deleteById(produtoId);
     }
 
 }
-module.exports = productsService;
+module.exports = ProdutosRepository;

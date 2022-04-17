@@ -1,25 +1,25 @@
 const { Router } = require('express');
-const ProdutosService = require('../services/produtoService');
-const {produtos} = require('../db/models')
+const RelacionamentoService = require('../services/relacionamentoService');
+const {rel_est_local_prod} = require('../db/models')
 
 
 const routes = Router();
 
-const produtosService = new ProdutosService();
+const relacionamentoService = new RelacionamentoService();
 
 routes.get('/', async (_req, res) => {
-    const produtos = await produtosService.list();
+    const products = await relacionamentoService.list();
 
     return res
     .status(200)
-    .json(produtos);
+    .json(products);
 })
 
 routes.post('/', async  (req, res) => {
     const {body} = req;
-    const  produtos = await produtosService.create(body);
+    const  products = await relacionamentoService.create(body);
 
-    return res.status(201).json(produtos);
+    return res.status(201).json(products);
 })
 
 routes.put('/:name', async (req, res) => {
@@ -27,7 +27,7 @@ routes.put('/:name', async (req, res) => {
     const {name} = params;
 
     try{
-        await produtosService.updateByName(name, body);
+        await relacionamentoService.updateByName(name, body);
     }catch(error){
         return res.status(400).json({
             errorMessage: error.message
@@ -44,7 +44,7 @@ routes.delete('/:id', async (req, res) => {
     const {id} = params;
 
     try{
-        await produtosService.deleteById(id);
+        await relacionamentoService.deleteById(id);
     }catch(error){
         return res.status(400).json({
             errorMessage: error.message
@@ -61,7 +61,7 @@ routes.get('/check/:name', async (req, res) => {
     const {name} = params;
 
 
-    const produtos = await produtos.findOne({ where: { name } });
+    const products = await products.findOne({ where: { name } });
 
     if(user === null){
         return null
