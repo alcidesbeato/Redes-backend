@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class estoque extends Model {
     //
     static associate(models) {
-      // 
+      //
     }
   };
   estoque.init({

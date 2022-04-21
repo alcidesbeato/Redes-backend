@@ -7,20 +7,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      codigo_estoque: { 
-        type: Sequelize.STRING 
+      codigo_estoque: {
+        type: Sequelize.STRING
       },
-      codigo_produto: { 
-        type: Sequelize.STRING 
+      codigo_produto: {
+        type: Sequelize.STRING
       },
-      codigo_local: { 
-        type: Sequelize.STRING 
+      codigo_local: {
+        type: Sequelize.STRING
       },
-      quantidade_estoque: { 
-        type: Sequelize.INTEGER 
+      quantidade_estoque: {
+        type: Sequelize.INTEGER
       },
-      quantidade_local: { 
-        type: Sequelize.INTEGER 
+      quantidade_local: {
+        type: Sequelize.INTEGER
       },
     });
 

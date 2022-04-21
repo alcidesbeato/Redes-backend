@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class rel_est_local_prod extends Model {
    //
     static associate(models) {
-      // 
+      //
     }
   };
   rel_est_local_prod.init({

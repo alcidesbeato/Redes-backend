@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       lote: {
-        type: Sequelize.STRING 
+        type: Sequelize.STRING
       },
     });
   },

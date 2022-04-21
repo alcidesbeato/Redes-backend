@@ -7,11 +7,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nome: { 
-        type: Sequelize.STRING 
+      nome: {
+        type: Sequelize.STRING
       },
       valor: {
-        type: Sequelize.FLOAT 
+        type: Sequelize.FLOAT
       },
     });
 
