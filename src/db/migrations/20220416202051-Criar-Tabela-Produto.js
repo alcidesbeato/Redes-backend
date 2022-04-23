@@ -5,13 +5,19 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER // STRING?
       },
-      nome: {
+      origem: { 
+        type: Sequelize.STRING 
+      },
+      lote: {
         type: Sequelize.STRING
       },
-      valor: {
-        type: Sequelize.FLOAT
+      data_fabricacao: { 
+        type: Sequelize.DATE
+      },
+      data_validade: {
+        type: Sequelize.DATE
       },
     });
 

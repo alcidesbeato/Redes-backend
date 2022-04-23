@@ -66,7 +66,7 @@ routes.get('/check/:name', async (req, res) => {
     if(user === null){
         return null
     }else return 'ok'
-
+    
 })
 
 module.exports = routes;

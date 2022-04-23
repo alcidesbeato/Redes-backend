@@ -66,7 +66,7 @@ routes.get('/check/:name', async (req, res) => {
         console.log('usuario invalido');
         return null
     }else return 'ok'
-
+    
 })
 
 module.exports = routes;

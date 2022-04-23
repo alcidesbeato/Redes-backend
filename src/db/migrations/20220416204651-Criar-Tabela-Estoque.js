@@ -7,8 +7,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      lote: {
-        type: Sequelize.STRING
+      localizacao: {
+        type: Sequelize.STRING 
+      },
+      quantidade: {
+        type: Sequelize.INT
       },
     });
   },

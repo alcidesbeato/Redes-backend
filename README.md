@@ -21,9 +21,11 @@
 Este repositório é responsável pelo gerenciamento do banco de dados relacional.
 
 ## Outros Repositórios
+* [QRCode Reader](https://github.com/RichardCLopes/QRCode_Reader)
 * [Sistema Web Almoxarifado](https://github.com/alcidesbeato/Sistema-web-Almoxarifado)
 
 ## Documentação
+* [APIs](docs/swagger.yaml)
 * [DER](https://dbdiagram.io/d/62616d401072ae0b6ac61cce)
 
 ## Autores

@@ -1,7 +1,7 @@
 const ProductsRepository = require("../db/repositories/produtosRepository");
 
 class productsService{
-   productsRepository = new ProductsRepository();
+    productsRepository = new ProductsRepository();
     async list(name){
         return await this.productsRepository.list(name);
     }
@@ -13,7 +13,7 @@ class productsService{
     async updateByName(productName, product){
         const productsExiste = await this.productsRepository.getByName(productName);
         if(!productsExiste){
-            throw new Error('nao existe um product com esse nome');
+            throw new Error('Nao existe um product com esse nome.');
         }
         await this.productsRepository.update(productName,product);
 
@@ -23,7 +23,7 @@ class productsService{
     async deleteById(productId){
         const productsExiste = await this.productsRepository.getById(productId);
         if(!productsExiste){
-            throw new Error('nao existe um product com esse id');
+            throw new Error('Nao existe um product com esse id.');
         }
         await this.productsRepository.deleteById(productId);
     }

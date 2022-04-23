@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   local.init({
-    nome: DataTypes.STRING
+    localizacao: DataTypes.STRING,
+    quantidade: DataTypes.INT
   }, {
     sequelize,
     modelName: 'Local',

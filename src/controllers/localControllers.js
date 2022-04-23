@@ -59,14 +59,14 @@ routes.delete('/:id', async (req, res) => {
 routes.get('/check/:name', async (req, res) => {
     const {params} = req;
     const {name} = params;
-
+    
     const local = await local.findOne({ where: { name } });
 
     if(user === null){
         console.log('usuario invalido');
         return null
     }else return 'ok'
-
+    
 })
 
 module.exports = routes;
