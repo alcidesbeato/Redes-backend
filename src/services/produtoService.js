@@ -1,6 +1,6 @@
 const ProdutosRepository = require("../db/repositories/produtosRepository");
 
-class produtosService{
+class ProdutosService{
    produtosRepository = new ProdutosRepository();
     async list(name){
         return await this.produtosRepository.list(name);
@@ -29,4 +29,4 @@ class produtosService{
     }
 
 }
-module.exports = ProdutosRepository;
+module.exports = ProdutosService;

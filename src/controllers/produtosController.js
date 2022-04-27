@@ -16,6 +16,7 @@ routes.get('/', async (_req, res) => {
 })
 
 routes.post('/', async  (req, res) => {
+    console.log('ola');
     const {body} = req;
     const  produtos = await produtosService.create(body);
 
