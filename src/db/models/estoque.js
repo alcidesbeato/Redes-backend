@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   estoque.init({
     localizacao: DataTypes.STRING,
-    quantidade: DataTypes.INT
+    quantidade: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Estoque',
