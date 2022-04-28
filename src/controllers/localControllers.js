@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const LocalService = require('../services//localService');
-const {produtos} = require('../db/models')
+const LocalService = require('../services/localService');
+const {local} = require('../db/models')
 
 
 const routes = Router();

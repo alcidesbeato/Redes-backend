@@ -1,11 +1,14 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Produto', {
-      id: {
+      numero_produto: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      nome: { 
+        type: Sequelize.STRING 
       },
       origem: { 
         type: Sequelize.STRING 

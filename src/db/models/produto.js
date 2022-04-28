@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   produtos.init({
     nome: DataTypes.STRING,
     origem: DataTypes.STRING,
+    lote: DataTypes.STRING,
     data_fabricao: DataTypes.DATE,
     data_validade: DataTypes.DATE
   }, {

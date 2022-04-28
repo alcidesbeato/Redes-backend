@@ -10,9 +10,9 @@ const relacionamentoController =  require('./relacionamentoController');
 
 const routes = Router();
 
-routes.use('/produtos', produtosController);
+routes.use('/produto', produtosController);
 routes.use('/local', localController);
 routes.use('/estoque', estoqueController);
-routes.use('/relacionamento', estoqueController);
+routes.use('/relacionamento', relacionamentoController);
 
 module.exports = routes;

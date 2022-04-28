@@ -8,10 +8,10 @@ module.exports = {
           type: Sequelize.INTEGER
         },
         id_produto: { 
-          type: Sequelize.STRING 
+          type: Sequelize.INTEGER 
         },
         id_estoque: { 
-          type: Sequelize.STRING 
+          type: Sequelize.INTEGER 
         },
         createdAt: {
           allowNull: false,

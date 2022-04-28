@@ -1,32 +1,32 @@
-const ProductsRepository = require("../db/repositories/produtosRepository");
+const EstoqueRepository = require("../db/repositories/produtosRepository");
 
-class productsService{
-    productsRepository = new ProductsRepository();
+class EstoqueService{
+    estoqueRepository = new EstoqueRepository();
     async list(name){
-        return await this.productsRepository.list(name);
+        return await this.estoqueRepository.list(name);
     }
 
     async create(product){
-        return await this.productsRepository.create(product);
+        return await this.estoqueRepository.create(product);
     }
 
     async updateByName(productName, product){
-        const productsExiste = await this.productsRepository.getByName(productName);
-        if(!productsExiste){
+        const estoqueExiste = await this.estoqueRepository.getByName(productName);
+        if(!estoqueExiste){
             throw new Error('Nao existe um product com esse nome.');
         }
-        await this.productsRepository.update(productName,product);
+        await this.estoqueRepository.update(productName,product);
 
-        return await this.productsRepository.getByName(productName);
+        return await this.estoqueRepository.getByName(productName);
     }
 
     async deleteById(productId){
-        const productsExiste = await this.productsRepository.getById(productId);
-        if(!productsExiste){
+        const estoqueExiste = await this.estoqueRepository.getById(productId);
+        if(!estoqueExiste){
             throw new Error('Nao existe um product com esse id.');
         }
-        await this.productsRepository.deleteById(productId);
+        await this.estoqueRepository.deleteById(productId);
     }
 
 }
-module.exports = productsService;
+module.exports = EstoqueService;
