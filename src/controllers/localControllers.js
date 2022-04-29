@@ -8,21 +8,30 @@ const routes = Router();
 const localService = new LocalService();
 
 routes.get('/', async (_req, res) => {
-    const local = await localService.list();
-
-    return res
-    .status(200)
-    .json(local);
+   try{
+        const local = await localService.list();
+        return res.status(200).json(local);
+   }catch(err){
+        return res.status(400).json({
+            errorMessage: error.message
+        })
+   }
 })
 
 routes.post('/', async  (req, res) => {
-    const {body} = req;
-    const  local = await localService.create(body);
+    try{
+        const {body} = req;
+        const  local = await localService.create(body);
 
-    return res.status(201).json(local);
+        return res.status(201).json(local);
+    }catch(err){
+        return res.status(400).json({
+            errorMessage: error.message
+        })
+    }
 })
 
-routes.put('/:name', async (req, res) => {
+routes.put('/:id', async (req, res) => {
     const {body,params} = req;
     const {name} = params;
 
@@ -59,11 +68,10 @@ routes.delete('/:id', async (req, res) => {
 routes.get('/check/:name', async (req, res) => {
     const {params} = req;
     const {name} = params;
-    
+
     const local = await local.findOne({ where: { name } });
 
     if(user === null){
-        console.log('usuario invalido');
         return null
     }else return 'ok'
     

@@ -8,21 +8,30 @@ const routes = Router();
 const estoqueService = new EstoqueService();
 
 routes.get('/', async (_req, res) => {
-    const estoque = await estoqueService.list();
-
-    return res
-    .status(200)
-    .json(estoque);
+   try{
+        const estoque = await estoqueService.list();
+        return res.status(200).json(estoque);
+   }catch(err){
+        return res.status(400).json({
+            errorMessage: error.message
+        })
+   }
 })
 
 routes.post('/', async  (req, res) => {
-    const {body} = req;
-    const  estoque = await estoqueService.create(body);
+    try{
+        const {body} = req;
+        const  estoque = await estoqueService.create(body);
 
-    return res.status(201).json(estoque);
+        return res.status(201).json(estoque);
+    }catch(err){
+        return res.status(400).json({
+            errorMessage: error.message
+        })
+    }
 })
 
-routes.put('/:name', async (req, res) => {
+routes.put('/:id', async (req, res) => {
     const {body,params} = req;
     const {name} = params;
 
