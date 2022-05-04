@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+//npm install amqplib
+
 var amqp = require('amqplib/callback_api');
 amqp.connect('amqp://localhost', function(error0, connection) {});
 
@@ -19,8 +23,8 @@ amqp.connect('amqp://localhost', function(error0, connection) {
     if (error1) {
       throw error1;
     }
-    var queue = 'hello';
-    var msg = 'Hello world'; 
+    var queue = 'Relacional';
+    var msg = 'Message to bank'; 
 
     channel.assertQueue(queue, {
       durable: false

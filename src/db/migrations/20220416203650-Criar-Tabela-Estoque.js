@@ -1,11 +1,14 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Estoque', {
-      codigo: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
+      },
+      codigo: {
+        type: Sequelize.STRING
       },
       localizacao: {
         type: Sequelize.STRING 
