@@ -65,15 +65,18 @@ routes.delete('/:id', async (req, res) => {
     })
 })
 
-routes.get('/check/:name', async (req, res) => {
+routes.get('/:id', async (req, res) => {
     const {params} = req;
-    const {name} = params;
+    const {id} = params;
 
-    const local = await local.findOne({ where: { name } });
-
-    if(user === null){
-        return null
-    }else return 'ok'
+    try{
+        const local = await local.findOne({ where: { id } });
+        return res.status(200).json(local);
+   }catch(err){
+        return res.status(400).json({
+            errorMessage: error.message
+        })
+   }
     
 })
 
