@@ -2,6 +2,7 @@
 
 var amqp = require('amqplib/callback_api');
 
+//Copiar essa função no momento quer quer inserir algo no banco (Manda o JSON)
 amqp.connect('amqp://localhost', function(error0, connection) {
   if (error0) {
     throw error0;
@@ -10,9 +11,9 @@ amqp.connect('amqp://localhost', function(error0, connection) {
     if (error1) {
       throw error1;
     }
-    var queue = 'hello';
-    var msg = 'Teste';
-
+    var queue = 'SQL';
+    //var msg = 'Teste';
+    //Informação a ser escrita no banco 
     channel.assertQueue(queue, {
       durable: false
     });
