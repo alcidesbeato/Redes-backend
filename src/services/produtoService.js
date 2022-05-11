@@ -13,7 +13,7 @@ class ProdutosService{
     async updateByName(produtoName, produto){
         const produtosExiste = await this.produtosRepository.getByName(produtoName);
         if(!produtosExiste){
-            throw new Error('Nao existe um produto com esse nome.');
+            throw new Error('nao existe um produto com esse nome');
         }
         await this.produtosRepository.update(produtoName,produto);
 
@@ -23,7 +23,7 @@ class ProdutosService{
     async deleteById(produtoId){
         const produtosExiste = await this.produtosRepository.getById(produtoId);
         if(!produtosExiste){
-            throw new Error('Nao existe um produto com esse id.');
+            throw new Error('nao existe um produto com esse id');
         }
         await this.produtosRepository.deleteById(produtoId);
     }

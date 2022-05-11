@@ -1,4 +1,4 @@
-const LocalRepository = require("../db/repositories/produtosRepository");
+const LocalRepository = require("../db/repositories/localRepository");
 
 class LocalService{
     localRepository = new LocalRepository();
@@ -6,26 +6,26 @@ class LocalService{
         return await this.localRepository.list(name);
     }
 
-    async create(producto){
-        return await this.localRepository.create(producto);
+    async create(produto){
+        return await this.localRepository.create(produto);
     }
 
-    async updateByName(productoName, producto){
+    async updateByName(productoName, produto){
         const localExiste = await this.localRepository.getByName(productoName);
         if(!localExiste){
-            throw new Error('Nao existe um producto com esse nome.');
+            throw new Error('Nao existe um produto com esse nome.');
         }
-        await this.localRepository.update(productoName,producto);
+        await this.localRepository.update(productoName,produto);
 
         return await this.localRepository.getByName(productoName);
     }
 
-    async deleteById(productoId){
-        const localExiste = await this.localRepository.getById(productoId);
+    async deleteById(produtoId){
+        const localExiste = await this.localRepository.getById(produtoId);
         if(!localExiste){
-            throw new Error('Nao existe um producto com esse id.');
+            throw new Error('Nao existe um produto com esse id.');
         }
-        await this.localRepository.deleteById(productoId);
+        await this.localRepository.deleteById(produtoId);
     }
 
 }

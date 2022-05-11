@@ -1,4 +1,4 @@
-const EstoqueRepository = require("../db/repositories/produtosRepository");
+const EstoqueRepository = require("../db/repositories/estoqueRepository");
 
 class EstoqueService{
     estoqueRepository = new EstoqueRepository();
