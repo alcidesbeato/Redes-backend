@@ -15,7 +15,6 @@ class ProdutosRepository{
     }
 
     async create(currentProduto){
-        console.log('produto:', currentProduto );
         return await produtos.create(currentProduto);
     }
 

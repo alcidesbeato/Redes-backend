@@ -1,17 +1,16 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Rel_Local_Produto', {
+    await queryInterface.createTable('Local', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_produto: { 
-        type: Sequelize.INTEGER 
+      localizacao: {
+        type: Sequelize.STRING 
       },
-      id_local: { 
-        type: Sequelize.INTEGER 
+      quantidade: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -26,6 +25,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.dropTable('Rel_Local_Produto');
+    await queryInterface.dropTable('Local');
   },
 };

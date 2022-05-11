@@ -22,12 +22,10 @@ routes.post('/', async  (req, res) => {
     try{
         const {body} = req;
         const  produtos = await produtosService.create(body);
-
+        
         return res.status(201).json(produtos);
     }catch(err){
-        return res.status(400).json({
-            errorMessage: error.message
-        })
+        return res.status(400).json()
     }
 })
 

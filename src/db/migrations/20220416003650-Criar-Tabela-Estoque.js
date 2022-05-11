@@ -1,13 +1,9 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Local', {
+    await queryInterface.createTable('Estoque', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      codigo: {
         type: Sequelize.STRING
       },
       localizacao: {
@@ -25,10 +21,8 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
-
   },
-
   down: async (queryInterface) => {
-    await queryInterface.dropTable('Local');
-  },
+    await queryInterface.dropTable('Estoque');
+  }
 };

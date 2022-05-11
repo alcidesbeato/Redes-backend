@@ -6,9 +6,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
-      numero_produto: {
-        type: Sequelize.INTEGER
-      },
       nome: { 
         type: Sequelize.STRING 
       },
