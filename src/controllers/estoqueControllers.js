@@ -12,9 +12,13 @@ routes.get('/', async (_req, res) => {
         const estoque = await estoqueService.list();
         return res.status(200).json(estoque);
    }catch(err){
-        return res.status(400).json({
+       //404, 500
+       if(err){
+        alert(err);
+        return res.json({
             errorMessage: error.message
         })
+     }
    }
 })
 
@@ -23,10 +27,10 @@ routes.post('/', async  (req, res) => {
         const {body} = req;
         const  estoque = await estoqueService.create(body);
 
-        return res.status(201).json(estoque);
+        return res.status(200).json(estoque);
     }catch(err){
         return res.status(405).json({
-            errorMessage: error.message
+            errorMessage: err.message
         })
     }
 })
