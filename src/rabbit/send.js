@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+export function rabbit(msg){
 var amqp = require('amqplib/callback_api');
 
 //Copiar essa função no momento quer quer inserir algo no banco (Manda o JSON)
@@ -12,7 +12,6 @@ amqp.connect('amqp://localhost', function(error0, connection) {
       throw error1;
     }
     var queue = 'SQL';
-    //var msg = 'Teste';
     //Informação a ser escrita no banco 
     channel.assertQueue(queue, {
       durable: false
@@ -28,3 +27,4 @@ setTimeout(function() {
   process.exit(0)
   }, 500);
 });
+}

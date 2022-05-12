@@ -15,7 +15,12 @@ class ProdutosRepository{
     }
 
     async create(currentProduto){
-        return await produtos.create(currentProduto);
+        try{
+            console.log('1', currentProduto );
+            return await produtos.create(currentProduto);
+        }catch(err){
+            console.log('error', err);
+        }
     }
 
     async update(produtoName, currentProduto){
