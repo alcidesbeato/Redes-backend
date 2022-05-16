@@ -16,8 +16,8 @@ class ProdutosService{
         if(!produtoExiste){
             throw new Error('nao existe um produto com esse nome');
         }
-        await this.produtosRepository.update(produtoId,produto);
-
+        const sponse = await this.produtosRepository.update(produtoId,produto);
+        console.log('response', response);
         return await this.produtosRepository.getId(produtoId);
     }
 
