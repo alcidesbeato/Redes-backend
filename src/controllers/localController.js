@@ -19,6 +19,19 @@ routes.get('/',cors(), async  (req, res) => {
 
 })
 
+routes.get('/id',cors(), async  (req, res) => {
+    const {body} = req;
+    try{
+        queue.sendToQueue('Relacional', body);
+        response = await rabbitLocal.relacional(body, 'get id');
+        return res.status(200).json(response);
+
+    }catch(err){
+        console.log(err, 'err');
+    }
+
+})
+
 routes.post('/',cors(), async  (req, res) => {
     const {body} = req;
 
