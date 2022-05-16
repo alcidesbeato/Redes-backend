@@ -1,17 +1,17 @@
 const { Router } = require('express');
 const queue = require('../rabbit/queue');
-const RabbitProduto = require('../rabbit/receivedProduto');
+const RabbitEstoque = require('../rabbit/receivedEstoque');
 var cors = require('cors');
-const produtos = require('../db/models/produtos');
+
 
 const routes = Router();
-const rabbitProduto = new RabbitProduto();
+const rabbitEstoque = new RabbitEstoque();
 
 routes.get('/',cors(), async  (req, res) => {
     const {body} = req;
     try{
         queue.sendToQueue('Relacional', body);
-        response = await rabbitProduto.relacional(body, 'get');
+        response = await rabbitEstoque.relacional(body, 'get');
         return res.status(200).json(response);
 
     }catch(err){
@@ -20,12 +20,12 @@ routes.get('/',cors(), async  (req, res) => {
 
 })
 
-routes.post('/',cors(), async  (req, res) => {
+routes.post('/', cors(), async  (req, res) => {
     const {body} = req;
 
     try{
         queue.sendToQueue('Relacional', body);
-        await rabbitProduto.relacional(body, 'post');
+        await rabbitEstoque.relacional(body, 'post');
         return res.status(200).json(body);
 
     }catch(err){
@@ -34,14 +34,13 @@ routes.post('/',cors(), async  (req, res) => {
 
 })
 
-routes.put('/',cors(), async  (req, res) => {
+routes.put('/', cors(), async  (req, res) => {
     const {params, body} = req;
     const {name} = params;
-    console.log('put');
 
     try{
         queue.sendToQueue('Relacional', body);
-        await rabbitProduto.relacional(body, 'put');
+        await rabbitEstoque.relacional(body, 'put');
         return res.status(200).json(body);
 
     }catch(err){
@@ -51,9 +50,3 @@ routes.put('/',cors(), async  (req, res) => {
 })
 
 module.exports = routes;
-
-
-//app -> put nos produtos e adiciona no estoque a quantidade
-//almoxarifado -> get no estoque, put estoque e put localStorage
-//caixa -> get no local e put no local
-

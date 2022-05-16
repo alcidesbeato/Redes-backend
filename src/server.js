@@ -2,8 +2,14 @@ const express = require('express');
 
 const {sequelize} = require('./db/models')
 
+var cors = require('cors')
+
 const app = express();
+
 app.use(express.json());
+
+app.use(cors())
+app.options('*', cors())
 
 sequelize
     .authenticate()

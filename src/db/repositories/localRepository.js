@@ -1,9 +1,9 @@
-const {local} = require('../models')
+const {locals} = require('../models')
 
 class LocalRepository{
     async list(){
         try {
-            return await local.findAll({
+            return await locals.findAll({
                 attributes: {
                     exclude: [],
                 }
@@ -15,23 +15,23 @@ class LocalRepository{
     }
 
     async create(currentLocal){
-        return await local.create(currentLocal);
+        return await locals.create(currentLocal);
     }
 
-    async update(localName, currentLocal){
-        return await local.update(currentLocal,{
+    async update(localId, currentLocal){
+        return await locals.update(currentLocal,{
             where: {
-                name: localName
+                id: localId
             }
         });
     }
 
-    async getByName(localName){
-        return await local.findOne({ where: { name: localName } });
+    async get(localId){
+        return await locals.findOne({ where: { id: localId } });
     }
 
     async deleteById(localId){
-        return await local.destroy({
+        return await locals.destroy({
             where: {
                 id: localId
             }

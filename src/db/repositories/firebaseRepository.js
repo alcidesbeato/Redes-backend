@@ -1,7 +1,5 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js";
-//import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js";
-import {getDatabase, ref, get, set, child, update, remove} from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
+const { initializeApp } = require('firebase/app');
+const {getDatabase, ref, get, set, child, update, remove} = require('firebase/database');
 
 class Database{
     constructor(){
@@ -148,4 +146,4 @@ class Database{
 
 
 }
-export default Database;
+module.exports = Database;
