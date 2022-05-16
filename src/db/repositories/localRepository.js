@@ -19,11 +19,13 @@ class LocalRepository{
     }
 
     async update(localId, currentLocal){
+        console.log('currentLocal', currentLocal);
         return await locals.update(currentLocal,{
             where: {
                 id: localId
             }
         });
+
     }
 
     async get(localId){

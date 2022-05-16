@@ -143,7 +143,10 @@ class Database{
             var resul = await ret;
             return resul;
     }
-
-
+     async updateApp(body, date){
+        var index = await this.select_index_reposicao_estoque();
+        this.insert_reposicao_estoque(index, body.nome, date.toString(), body.quantidade);
+        this.update_index_reposicao_estoque(index + 1);
+     }
 }
 module.exports = Database;

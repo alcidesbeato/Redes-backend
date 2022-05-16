@@ -9,11 +9,11 @@ class RabbitLocal{
     firebase = new Database();
     estoqueService = new EstoqueService();
 
-    async relacional (body, type, name){
+    async relacional (body, type){
         let response;
         var initial;
         const date = moment().toDate();
-
+    
         console.log('Rabbit consumer on')
 
         if(type === 'get'){
@@ -58,6 +58,10 @@ class RabbitLocal{
                     this.firebase.update_index_reposicao_estoque(index + 1);
                 break;
 
+                case 'caixa': 
+                    console.log('put caixa');
+                    this.localService.update(body.id, body);
+                break;
             }
         })
     }

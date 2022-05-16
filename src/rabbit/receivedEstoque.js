@@ -7,7 +7,7 @@ class RabbitEstoque{
     estoqueService = new EstoqueService();
     firebase = new Database();
 
-    async relacional (body, type, name){
+    async relacional (body, type){
         let response;
         var initial;
         const date = moment().toDate();

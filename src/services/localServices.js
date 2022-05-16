@@ -12,11 +12,12 @@ class LocalService{
     }
 
     async update(localId, local){
+        //console.log('local', local);
         const localExiste = await this.localRepository.get(localId);
         if(!localExiste){
             throw new Error('nao existe um local com esse nome');
         }
-        await this.localRepository.update(localId,local);
+        await this.localRepository.update(localId, local);
 
         return await this.localRepository.get(localId);
     }

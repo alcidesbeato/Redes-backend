@@ -48,4 +48,17 @@ routes.put('/',cors(), async  (req, res) => {
 
 })
 
+routes.put('/caixa',cors(), async  (req, res) => {
+    const { body} = req;
+    try{
+        queue.sendToQueue('Relacional', body);
+        await rabbitLocal.relacional(body, 'caixa');
+        return res.status(200).json(body);
+
+    }catch(err){
+        console.log(err, 'err');
+    }
+
+})
+
 module.exports = routes;
