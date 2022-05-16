@@ -7,7 +7,7 @@ const EstoqueService = require('../services/estoqueServices');
 class RabbitLocal{
     localService = new LocalService();
     firebase = new Database();
-    estoqueService = new EstoqueService()
+    estoqueService = new EstoqueService();
 
     async relacional (body, type, name){
         let response;
