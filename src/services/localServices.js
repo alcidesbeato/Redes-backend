@@ -7,6 +7,10 @@ class LocalService{
         return await this.localRepository.list(name);
     }
 
+    async listId(id){
+        return await this.localRepository.get(id);
+    }
+
     async create(local){
         return await this.localRepository.create(local);
     }

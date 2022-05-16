@@ -23,6 +23,15 @@ class RabbitLocal{
             return await this.localService.list();
         }
 
+        if(type === 'get id'){
+            queue.consume('Relacional', message => {
+                console.log("processing " + message.content.toString())
+            })
+            console.log('get by id');
+            response =  await this.localService.listId(body.id);
+            console.log('response', response);
+        }
+
         if(type === 'put' || type === 'post'){
             response = await this.estoqueService.get(body.id);
             initial = response.dataValues.quantidade
@@ -51,11 +60,8 @@ class RabbitLocal{
                 case 'put': 
                     console.log('put');
                     this.localService.update(body.id, body);
-                    this.estoqueService.update(body.id, body);
                     this.firebase.insert_reposicao_prateleira(index, body.nome, date.toString(), body.quantidade);
                     this.firebase.update_index_reposicao_prateleira(index + 1);
-                    this.firebase.insert_reposicao_estoque(index, body.nome, date.toString(), restante);
-                    this.firebase.update_index_reposicao_estoque(index + 1);
                 break;
 
                 case 'caixa': 
