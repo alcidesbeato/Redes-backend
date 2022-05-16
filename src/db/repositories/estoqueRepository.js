@@ -19,12 +19,12 @@ class EstoqueRepository{
     }
 
     async createProduto(currentEstoque){
-        const Estoque = {
-            'nome': currentEstoque.name,
+        const estoque = {
+            'id': currentEstoque.id + 1,
+            'nome': currentEstoque.nome,
             'quantidade' : currentEstoque.quantidade
         }
-        
-        return await estoques.create(Estoque);
+        return await estoques.create(estoque);
     }
 
     async update(estoqueId, currentEstoque){

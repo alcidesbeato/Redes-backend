@@ -21,5 +21,9 @@ class EstoqueService{
         return await this.estoqueRepository.get(estoqueId);
     }
 
+    async get(estoqueId){
+        return await this.estoqueRepository.get(estoqueId);
+    }
+
 }
 module.exports = EstoqueService;

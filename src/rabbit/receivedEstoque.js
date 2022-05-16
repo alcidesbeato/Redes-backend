@@ -20,7 +20,7 @@ class RabbitEstoque{
             return await this.estoqueService.list();
         }
 
-        if(type === 'post' || type === 'post' ){
+        if(type === 'post' || type === 'put' ){
             var index = await this.firebase.select_index_reposicao_estoque();
         }
 
@@ -42,7 +42,7 @@ class RabbitEstoque{
 
                 case 'put': 
                     console.log('put');
-                    this.estoqueService.update(body.nome, body)
+                    this.estoqueService.update(body.id, body)
                     this.firebase.insert_reposicao_estoque(index, body.nome, date.toString(), body.quantidade);
                     this.firebase.update_index_reposicao_estoque(index + 1);
                 break;

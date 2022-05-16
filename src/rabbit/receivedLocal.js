@@ -2,12 +2,12 @@ const queue = require('./queue');
 const LocalService = require('../services/localServices');
 const Database = require('../db/repositories/firebaseRepository');
 const moment = require('moment');
-const EstoqueRepository = require('../db/repositories/estoqueRepository');
+const EstoqueService = require('../services/estoqueServices');
 
 class RabbitLocal{
     localService = new LocalService();
     firebase = new Database();
-    estoqueRepository = new EstoqueRepository()
+    estoqueService = new EstoqueService()
 
     async relacional (body, type, name){
         let response;
@@ -24,10 +24,8 @@ class RabbitLocal{
         }
 
         if(type === 'put' || type === 'post'){
-            response = await this.estoqueRepository.get(body.id);
-            response.map((item) => {
-                initial = item.dataValues.quantidade;
-            })
+            response = await this.estoqueService.get(body.id);
+            initial = response.dataValues.quantidade
             var restante = (initial - body.quantidade);
             var index = await this.firebase.select_index_reposicao_prateleira();
         }
@@ -53,7 +51,7 @@ class RabbitLocal{
                 case 'put': 
                     console.log('put');
                     this.localService.update(body.id, body);
-                    his.estoqueService.update(body.id, body);
+                    this.estoqueService.update(body.id, body);
                     this.firebase.insert_reposicao_prateleira(index, body.nome, date.toString(), body.quantidade);
                     this.firebase.update_index_reposicao_prateleira(index + 1);
                     this.firebase.insert_reposicao_estoque(index, body.nome, date.toString(), restante);
