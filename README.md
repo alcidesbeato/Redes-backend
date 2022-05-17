@@ -5,10 +5,12 @@
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 ![MAC](https://img.shields.io/badge/MAC-000000?style=for-the-badge&logo=macos&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+
 ![Android](https://img.shields.io/badge/android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![IOs](https://img.shields.io/badge/ios-000000?style=for-the-badge&logo=ios&logoColor=white)
 
 ![AndroidStudio](https://img.shields.io/badge/android_studio-3DDC84?style=for-the-badge&logo=androidstudio&logoColor=white)
+
 ![FireBase](https://img.shields.io/badge/FireBase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white)
 ![PostGreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white)
@@ -23,9 +25,14 @@
 Este repositório é responsável pelo gerenciamento do banco de dados relacional.
 
 ## Outros Repositórios
+
 * [QRCode Reader](https://github.com/RichardCLopes/QRCode_Reader)
 * [Sistema Web Almoxarifado](https://github.com/alcidesbeato/Sistema-web-Almoxarifado)
 * [Documentação](https://github.com/h-ssiqueira/Supermercado/)
+
+## Documentação
+* [DER](https://dbdiagram.io/d/62616d401072ae0b6ac61cce)
+
 
 ## Autores
 [Alcides Gomes Beato Neto](https://github.com/alcidesbeato)
