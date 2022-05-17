@@ -10,8 +10,8 @@ const rabbitProduto = new RabbitProduto();
 routes.get('/',cors(), async  (req, res) => {
     const {body} = req;
     try{
-        queue.sendToQueue('Relacional', body);
-        response = await rabbitProduto.relacional(body, 'get');
+        queue.sendToQueue('app', body);
+        //response = await rabbitProduto.relacional(body, 'get');
         return res.status(200).json(response);
 
     }catch(err){
@@ -35,8 +35,7 @@ routes.post('/',cors(), async  (req, res) => {
 })
 
 routes.put('/',cors(), async  (req, res) => {
-    const {params, body} = req;
-    const {name} = params;
+    const {body} = req;
     console.log('put');
 
     try{
