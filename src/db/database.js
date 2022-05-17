@@ -1,23 +1,23 @@
 module.exports = {
   development: {
-    username: 'gsmizrqh',
-    password: 'aJ03maJufykJ-CIt9DybiV_jqlZtAigg',
-    database: 'gsmizrqh',
-    host: 'ella.db.elephantsql.com',
+    username: 'ivfmrzyz',
+    password: 'Da588WqscB4_vWJC_vd-Au1iGn1ROLBn',
+    database: 'ivfmrzyz',
+    host: 'kesavan.db.elephantsql.com',
     dialect: 'postgres'
   },
   test: {
-    username: 'gsmizrqh',
-    password: 'aJ03maJufykJ-CIt9DybiV_jqlZtAigg',
-    database: 'gsmizrqh',
-    host: 'ella.db.elephantsql.com',
+    username: 'ivfmrzyz',
+    password: 'Da588WqscB4_vWJC_vd-Au1iGn1ROLBn',
+    database: 'ivfmrzyz',
+    host: 'kesavan.db.elephantsql.com',
     dialect: 'postgres'
   },
   production: {
-    username: 'gsmizrqh',
-    password: 'aJ03maJufykJ-CIt9DybiV_jqlZtAigg',
-    database: 'gsmizrqh',
-    host: 'ella.db.elephantsql.com',
+    username: 'ivfmrzyz',
+    password: 'Da588WqscB4_vWJC_vd-Au1iGn1ROLBn',
+    database: 'ivfmrzyz',
+    host: 'kesavan.db.elephantsql.com',
     dialect: 'postgres'
   }
 }

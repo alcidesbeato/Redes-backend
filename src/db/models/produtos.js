@@ -15,10 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   };
   produtos.init({
     nome: DataTypes.STRING,
-    valor: DataTypes.FLOAT
+    quantidade: DataTypes.INTEGER,
+    lote: DataTypes.STRING,
+    data_validade: DataTypes.STRING,
+    data_fabricacao: DataTypes.STRING,
   }, {
     sequelize,
-    modelName: 'Produto',
+    modelName: 'produtos',
   });
   return produtos;
 };
