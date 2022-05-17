@@ -7,6 +7,10 @@ class ProdutosService{
         return await this.produtosRepository.list(name);
     }
 
+    async get(id){
+        return await this.produtosRepository.getId(id);
+    }
+
     async create(produto){
         return await this.produtosRepository.create(produto);
     }

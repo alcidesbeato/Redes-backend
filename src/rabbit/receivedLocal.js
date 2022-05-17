@@ -29,6 +29,14 @@ class RabbitLocal{
             var restante = (initial - body.quantidade);
             var index = await this.firebase.select_index_reposicao_prateleira();
         }
+
+        if(type === 'caixa'){
+            response = await this.localService.get(body.id);
+            var localQuantidade = response.dataValues.quantidade
+            var diferenca = (localQuantidade - body.quantidade);
+            console.log("diferenca", diferenca);            
+            var index = await this.firebase.select_index_saida_caixa();
+        }
         
 
         queue.consume('Relacional', message => {
@@ -49,7 +57,6 @@ class RabbitLocal{
                 break;
 
                 case 'put': 
-                    console.log('local');
                     console.log('put');
                     this.localService.update(body.id, body);
                     this.firebase.insert_reposicao_prateleira(index, body.nome, date.toString(), body.quantidade);
@@ -59,6 +66,8 @@ class RabbitLocal{
                 case 'caixa': 
                     console.log('put caixa');
                     this.localService.update(body.id, body);
+                    this.firebase.insert_saida_caixa(index, body.nome, date.toString(), diferenca);
+                    this.firebase.update_index_saida_caixa(index + 1);
                 break;
             }
         })

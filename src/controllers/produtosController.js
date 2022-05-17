@@ -52,8 +52,3 @@ routes.put('/',cors(), async  (req, res) => {
 
 module.exports = routes;
 
-
-//app -> put nos produtos e adiciona no estoque a quantidade
-//almoxarifado -> get no estoque, put estoque e put localStorage
-//caixa -> get no local e put no local
-

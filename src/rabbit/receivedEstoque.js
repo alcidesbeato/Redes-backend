@@ -27,10 +27,10 @@ class RabbitEstoque{
 
         if(type === 'deposito'){
             response = await this.localService.get(body.id);
-            console.log('response', response.dataValues.quantidade);
             initial = response.dataValues.quantidade
-            var adicional = (initial + body.quantidade);
-            var index = await this.firebase.select_index_reposicao_estoque();
+            var adicional = (initial + body.quantidadeAnterior);
+            console.log("adicional", adicional);
+            var index = await this.firebase.select_index_reposicao_prateleira();
         }
 
         console.log('Rabbit consumer on')
@@ -45,14 +45,11 @@ class RabbitEstoque{
                 case 'post': 
                     console.log('post');
                     this.estoqueService.create(body);
-                    this.firebase.insert_reposicao_estoque(index, body.nome, date.toString(), body.quantidade);
-                    this.firebase.update_index_reposicao_estoque(index + 1);
                 break;
 
                 case 'put': 
-                    console.log('estoque');
                     console.log('put');
-                    this.estoqueService.update(body.id, body)
+                    this.estoqueService.update(body.id, body);
                     this.firebase.insert_reposicao_estoque(index, body.nome, date.toString(), body.quantidade);
                     this.firebase.update_index_reposicao_estoque(index + 1);
                 break;
@@ -60,9 +57,8 @@ class RabbitEstoque{
                 case 'deposito': 
                     console.log('deposito');
                     this.estoqueService.update(body.id, body)
-                    this.firebase.insert_reposicao_estoque(index, body.nome, date.toString(), body.quantidade);
-                    this.firebase.update_index_reposicao_estoque(index + 1);
-                    console.log('put deposito');
+                    this.firebase.insert_reposicao_prateleira(index, body.nome, date.toString(), body.quantidadeAnterior);
+                    this.firebase.update_index_reposicao_prateleira(index + 1);
                     const json = {
                         id: body.id,
                         nome: body.nome,

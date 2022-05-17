@@ -24,6 +24,8 @@ class RabbitProduto{
 
         if(type === 'put' || type === 'post'){
             var index = await this.firebase.select_index_reposicao_estoque();
+            var initialProduto = await this.produtosService.get(body.id);
+            var initialEstoque = await this.estoqueRepository.get(body.id);
         }
 
         console.log('Rabbit consumer on')
@@ -44,8 +46,22 @@ class RabbitProduto{
 
                 case 'put': 
                     console.log('put');
-                    this.produtosService.update(body.id, body);
-                    this.estoqueRepository.createProduto(body);
+                    const jsonProduto = {
+                        id: body.id,
+                        nome: body.nome,
+                        quantidade: parseInt(initialProduto.quantidade) + body.quantidade,
+                        lote: body.lote,
+                        data_fabricacao: body.data_fabricacao,
+                        data_validade: body.data_validade
+                    }
+                    this.produtosService.update(body.id, jsonProduto);
+                    const jsonEstoque = {
+                        id: body.id,
+                        nome: body.nome,
+                        quantidade: parseInt(initialEstoque.quantidade) + body.quantidade
+                    }
+
+                    this.estoqueRepository.update(body.id, jsonEstoque);
                     this.firebase.insert_reposicao_estoque(index, body.nome, date.toString(), body.quantidade);
                     this.firebase.update_index_reposicao_estoque(index + 1);
                 break;
