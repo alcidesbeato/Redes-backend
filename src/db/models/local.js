@@ -3,18 +3,22 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class local extends Model {
-    //
+  class locals extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      // 
+      // define association here
     }
   };
-  local.init({
-    localizacao: DataTypes.STRING,
-    quantidade: DataTypes.INTEGER
+  locals.init({
+    nome: DataTypes.STRING,
+    quantidade: DataTypes.INTEGER,
   }, {
     sequelize,
-    modelName: 'Local',
+    modelName: 'locals',
   });
-  return local;
+  return locals;
 };

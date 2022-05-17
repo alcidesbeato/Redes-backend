@@ -1,6 +1,6 @@
 const {produtos} = require('../models')
 
-class ProdutosRepository{
+class ProdutoRepository{
     async list(){
         try {
             return await produtos.findAll({
@@ -15,24 +15,19 @@ class ProdutosRepository{
     }
 
     async create(currentProduto){
-        try{
-            console.log('1', currentProduto );
-            return await produtos.create(currentProduto);
-        }catch(err){
-            console.log('error', err);
-        }
+        return await produtos.create(currentProduto);
     }
 
-    async update(produtoName, currentProduto){
+    async update(produtoId, currentProduto){
         return await produtos.update(currentProduto,{
             where: {
-                name: produtoName
+                id: produtoId
             }
         });
     }
 
-    async getByName(productName){
-        return await produtos.findOne({ where: { name: productName } });
+    async getId(produtoId){
+        return await produtos.findOne({ where: { id: produtoId } });
     }
 
     async deleteById(produtoId){
@@ -44,4 +39,4 @@ class ProdutosRepository{
     }
 }
 
-module.exports = ProdutosRepository;
+module.exports = ProdutoRepository;

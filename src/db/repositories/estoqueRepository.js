@@ -1,9 +1,9 @@
-const {estoque} = require('../models')
+const {estoques} = require('../models')
 
 class EstoqueRepository{
     async list(){
         try {
-            return await estoque.findAll({
+            return await estoques.findAll({
                 attributes: {
                     exclude: [],
                 }
@@ -15,23 +15,32 @@ class EstoqueRepository{
     }
 
     async create(currentEstoque){
-        return await estoque.create(currentEstoque);
+        return await estoques.create(currentEstoque);
     }
 
-    async update(estoqueName, currentEstoque){
-        return await estoque.update(currentEstoque,{
+    async createProduto(currentEstoque){
+        const estoqueNovo = {
+            'id': (currentEstoque.id + 10),
+            'nome': currentEstoque.nome,
+            'quantidade' : currentEstoque.quantidade
+        }
+        return await estoques.create(estoqueNovo);
+    }
+
+    async update(estoqueId, currentEstoque){
+        return await estoques.update(currentEstoque,{
             where: {
-                name: estoqueName
+                id: estoqueId
             }
         });
     }
 
-    async getByName(estoqueName){
-        return await estoque.findOne({ where: { name: estoqueName } });
+    async get(estoqueId){
+        return await estoques.findOne({ where: { id: estoqueId } });
     }
 
     async deleteById(estoqueId){
-        return await estoque.destroy({
+        return await estoques.destroy({
             where: {
                 id: estoqueId
             }
