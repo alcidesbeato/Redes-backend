@@ -35,12 +35,27 @@ routes.post('/', cors(), async  (req, res) => {
 })
 
 routes.put('/', cors(), async  (req, res) => {
-    const {params, body} = req;
-    const {name} = params;
+    const {body} = req;
 
     try{
+        console.log('put do estoque');
         queue.sendToQueue('Relacional', body);
         await rabbitEstoque.relacional(body, 'put');
+        return res.status(200).json(body);
+
+    }catch(err){
+        console.log(err, 'err');
+    }
+
+})
+
+routes.put('/deposito', cors(), async  (req, res) => {
+    const {body} = req;
+
+    try{
+        console.log('put do estoque, deposito');
+        queue.sendToQueue('Relacional', body);
+        await rabbitEstoque.relacional(body, 'deposito');
         return res.status(200).json(body);
 
     }catch(err){

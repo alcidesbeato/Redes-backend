@@ -143,10 +143,57 @@ class Database{
             var resul = await ret;
             return resul;
     }
-     async updateApp(body, date){
+    async updateApp(body, date){
         var index = await this.select_index_reposicao_estoque();
         this.insert_reposicao_estoque(index, body.nome, date.toString(), body.quantidade);
         this.update_index_reposicao_estoque(index + 1);
-     }
+    }
+
+    async get_saida_caixa(){
+        const db2 = ref(getDatabase());
+        var ret = get(child(db2,"SaidaCaixa"))//retorna uma promise
+                .then((snapshot)=>{
+                    if(snapshot.exists()){
+                        //console.log(snapshot.val());
+                        return snapshot.val();
+                    }
+                    else{
+                        alert("Dado nao encontrado");
+                    }
+                })
+                .catch((error)=>{alert(error)});
+            var resul = await ret;
+            return resul;
+    }
+
+
+    async insert_saida_caixa(id, produto, data, quantidade){
+        const db = getDatabase();
+        set(ref(db, 'SaidaCaixa/' + produto + '/' + id),{
+            data: data,
+            quantidade: quantidade
+        })
+            .then(function(){return true;})
+            .catch(function(error){return false;});
+    }
+
+    async select_index_saida_caixa(){
+        const db = getDatabase();
+        var ret = get(child(ref(db),"IndexSaidaCaixa")).then(function(snapshot){
+        if(snapshot.exists()){
+            return snapshot.val();
+        }});
+        var resul = await ret;
+        return resul;
+    }
+
+    async update_index_saida_caixa(num){
+        const db = getDatabase();
+        update(ref(db),{
+            IndexSaidaCaixa : num
+        }).then(function(){return true;})
+        .catch(function(error){return false;});
+    }
+
 }
 module.exports = Database;

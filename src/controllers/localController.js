@@ -19,18 +19,6 @@ routes.get('/',cors(), async  (req, res) => {
 
 })
 
-routes.get('/id',cors(), async  (req, res) => {
-    const {body} = req;
-    try{
-        queue.sendToQueue('Relacional', body);
-        response = await rabbitLocal.relacional(body, 'get id');
-        return res.status(200).json(response);
-
-    }catch(err){
-        console.log(err, 'err');
-    }
-
-})
 
 routes.post('/',cors(), async  (req, res) => {
     const {body} = req;
@@ -47,10 +35,11 @@ routes.post('/',cors(), async  (req, res) => {
 })
 
 routes.put('/',cors(), async  (req, res) => {
-    const {params, body} = req;
-    const {name} = params;
+    const {body} = req;
 
     try{
+        console.log('put do local');
+
         queue.sendToQueue('Relacional', body);
         await rabbitLocal.relacional(body, 'put');
         return res.status(200).json(body);
@@ -73,5 +62,6 @@ routes.put('/caixa',cors(), async  (req, res) => {
     }
 
 })
+
 
 module.exports = routes;

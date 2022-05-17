@@ -8,7 +8,7 @@ var cors = require('cors')
 
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => console.log(PORT))
-
+/*
 const ProdutosService = require('./services/produtosServices');
 const produtosService = new ProdutosService();
 const Database = require('./db/repositories/firebaseRepository');
@@ -26,5 +26,5 @@ queue.consume("app", message => {
   console.log('JSON:', json);
   produtosService.update(json.id, json);
   firebase.updateApp(json, date);
-})
+})*/
 

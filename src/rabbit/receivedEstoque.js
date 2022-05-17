@@ -2,9 +2,10 @@ const queue = require('./queue');
 const EstoqueService = require('../services/estoqueServices');
 const Database = require('../db/repositories/firebaseRepository');
 const moment = require('moment');
-
+const LocalService = require('../services/localServices');
 class RabbitEstoque{
     estoqueService = new EstoqueService();
+    localService = new LocalService();
     firebase = new Database();
 
     async relacional (body, type){
@@ -21,6 +22,14 @@ class RabbitEstoque{
         }
 
         if(type === 'post' || type === 'put' ){
+            var index = await this.firebase.select_index_reposicao_estoque();
+        }
+
+        if(type === 'deposito'){
+            response = await this.localService.get(body.id);
+            console.log('response', response.dataValues.quantidade);
+            initial = response.dataValues.quantidade
+            var adicional = (initial + body.quantidade);
             var index = await this.firebase.select_index_reposicao_estoque();
         }
 
@@ -41,10 +50,26 @@ class RabbitEstoque{
                 break;
 
                 case 'put': 
+                    console.log('estoque');
                     console.log('put');
                     this.estoqueService.update(body.id, body)
                     this.firebase.insert_reposicao_estoque(index, body.nome, date.toString(), body.quantidade);
                     this.firebase.update_index_reposicao_estoque(index + 1);
+                break;
+
+                case 'deposito': 
+                    console.log('deposito');
+                    this.estoqueService.update(body.id, body)
+                    this.firebase.insert_reposicao_estoque(index, body.nome, date.toString(), body.quantidade);
+                    this.firebase.update_index_reposicao_estoque(index + 1);
+                    console.log('put deposito');
+                    const json = {
+                        id: body.id,
+                        nome: body.nome,
+                        quantidade: adicional,
+                    }
+                    console.log('json', json);
+                    this.localService.update(body.id, json);
                 break;
 
             }
